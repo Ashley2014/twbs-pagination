@@ -203,17 +203,17 @@
                         }
                         break;
                     case 'first':
-                        $this.toggleClass(that.options.disabledClass, pages.currentPage === 1);
+                            $this.toggleClass(that.options.disabledClass, pages.currentPage === 1);
                         break;
                     case 'last':
-                        $this.toggleClass(that.options.disabledClass, pages.currentPage === that.options.totalPages);
+                            $this.toggleClass(that.options.disabledClass, pages.currentPage === that.options.totalPages);
                         break;
                     case 'prev':
-                        $this.toggleClass(that.options.disabledClass, !that.options.loop && pages.currentPage === 1);
+                            $this.toggleClass(that.options.disabledClass, !that.options.loop && pages.currentPage === 1);
                         break;
                     case 'next':
-                        $this.toggleClass(that.options.disabledClass,
-                            !that.options.loop && pages.currentPage === that.options.totalPages);
+                            $this.toggleClass(that.options.disabledClass,
+                                !that.options.loop && pages.currentPage === that.options.totalPages);
                         break;
                     default:
                         break;
