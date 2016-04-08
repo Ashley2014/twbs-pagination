@@ -110,8 +110,17 @@
                 listItems.push(this.buildItem('prev', prev));
             }
 
+
+            if (this.options.ellipsis) {
+                listItems.push(this.buildItem('ellipsis', prev));
+            }
+
+
             for (var i = 0; i < pages.numeric.length; i++) {
+
+
                 listItems.push(this.buildItem('page', pages.numeric[i]));
+
             }
 
             if (this.options.next) {
@@ -152,13 +161,23 @@
                     itemText = this.options.last;
                     $itemContainer.addClass(this.options.lastClass);
                     break;
+                case 'ellipsis':
+                    itemText = this.options.ellipsis;
+                    $itemContainer.addClass(this.options.ellipsisClass);
+                    break;
                 default:
                     break;
             }
 
             $itemContainer.data('page', page);
             $itemContainer.data('page-type', type);
-            $itemContainer.append($itemContent.attr('href', this.makeHref(page)).html(itemText));
+
+            if(type=='ellipsis'){
+                $itemContainer.append('<span>'+(itemText)+'</span>');
+            }else{
+                $itemContainer.append($itemContent.attr('href', this.makeHref(page)).html(itemText));
+            }
+
 
             return $itemContainer;
         },
@@ -284,7 +303,8 @@
         pageClass: 'page',
         activeClass: 'active',
         disabledClass: 'disabled',
-        ellipsis: false
+        ellipsisClass: 'ellipsis',
+        ellipsis: '...'
     };
 
     $.fn.twbsPagination.Constructor = TwbsPagination;
