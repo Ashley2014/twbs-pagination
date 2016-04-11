@@ -44,14 +44,14 @@ gulp.task('less', function () {
         .pipe(gulp.dest('app/Public/College/css/'));
 });
 gulp.task('babel', function () {
-    return gulp.src('hb.twbsPagination.js')
+    return gulp.src('jquery.hb.twbsPagination.js')
         //.pipe(sourcemaps.init())
         .pipe(gulp.dest('dist'))
         .pipe(plugins.babel({
             presets: ['es2015']
         }))
         .pipe(plugins.uglify())
-        .pipe(plugins.rename("hb.twbsPagination.min.js"))
+        .pipe(plugins.rename("jquery.hb.twbsPagination.min.js"))
         //.pipe(sourcemaps.write('../maps/less'))
         .pipe(gulp.dest('dist'));
 });
