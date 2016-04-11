@@ -63,6 +63,8 @@
             this.$element.append(this.$listContainer);
         }
 
+
+
         this.render(this.getPages(this.options.startPage));
         this.setupEvents();
 
@@ -197,6 +199,28 @@
 
             return $itemContainer;
         },
+        buildPaginationControl: function (totalPages,currentPage) {
+
+            if (this.options.paginationControl) {
+                this.$listContainer.addClass('media-middle');
+                var paginationControl=`
+                <form class="form-inline pagination  media-middle">
+                  <div class="form-group">
+                    <div class="form-control-static">共${totalPages}页</div>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" value="${currentPage}"  placeholder="页数">
+                  </div>
+                  <button type="submit" class="btn btn-default">确定</button>
+                  </form>
+            `;
+                this.$listContainer.after(paginationControl);
+
+                var $paginationControl=$(paginationControl);
+                return $paginationControl;
+            }
+
+        },
 
         getPages: function (currentPage) {
             var pages = [];
@@ -257,6 +281,10 @@
                 }
 
             });
+            if (this.options.paginationControl) {
+                this.$listContainer.nextAll().remove();
+                this.buildPaginationControl(this.options.totalPages, pages.currentPage);
+            }
         },
 
         setupEvents: function () {
@@ -274,6 +302,18 @@
                     _this.show(parseInt($this.data('page')));
                 });
             });
+
+            if (this.options.paginationControl) {
+                this.$listContainer.next('form').on('submit', function (evt) {
+                    var $this = $(this);
+                    $this.off();
+                    evt.preventDefault();
+                    !_this.options.href && evt.preventDefault();
+                    _this.show(parseInt($this.find('input[type="text"]').val()));
+                });
+            }
+
+
         },
 
         makeHref: function (c) {
@@ -320,7 +360,8 @@
         activeClass: 'active',
         disabledClass: 'disabled',
         ellipsisClass: 'ellipsis',
-        ellipsis: '...'
+        ellipsis: '...',
+        paginationControl:true
     };
 
     $.fn.twbsPagination.Constructor = TwbsPagination;

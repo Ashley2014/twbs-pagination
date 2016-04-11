@@ -5,6 +5,7 @@
 fork from [twbs-pagination](https://github.com/esimakin/twbs-pagination)
 
 add option ellipsis
+add option paginationControl
 
 original [doc](http://esimakin.github.io/twbs-pagination/)
 
@@ -13,7 +14,8 @@ $('#pagination-demo').twbsPagination({
   totalPages: 35,
   visiblePages: 7,
   ellipsisClass: 'ellipsis',
-  ellipsis: '...'
+  ellipsis: '...',
+  paginationControl: true
   onPageClick: function (event, page) {
     $('#page-content').text('Page ' + page);
   }
