@@ -204,12 +204,15 @@
             if (this.options.paginationControl) {
                 this.$listContainer.addClass('media-middle');
                 var paginationControl=`
-                <form class="form-inline pagination  media-middle">
+                <form class="form-inline pagination media-middle ${this.options.paginationControlClass}">
                   <div class="form-group">
-                    <div class="form-control-static">共${totalPages}页</div>
+                    <div class="form-control-static">共${totalPages}页 到第</div>
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control" value="${currentPage}"  placeholder="页数">
+                  </div>
+                  <div class="form-group">
+                    <div class="form-control-static">页</div>
                   </div>
                   <button type="submit" class="btn btn-default">确定</button>
                   </form>
@@ -304,16 +307,30 @@
             });
 
             if (this.options.paginationControl) {
-                this.$listContainer.next('form').on('submit', function (evt) {
+                var $input=this.$listContainer.next('form').find('input[type="text"]');
+
+                var $form=this.$listContainer.next('form');
+
+                $input.on('change keyup', function () {
+                    var $this = $(this);
+                    var val=$this.val();
+                    $this.val(val.replace(/\D/g,''));
+                    val=Number($this.val());
+                    if(val>_this.options.totalPages){
+                        $this.val(_this.options.totalPages);
+                    }
+                });
+                $form.on('submit', function (evt) {
+                    var page=parseInt($input.val());
                     var $this = $(this);
                     $this.off();
                     evt.preventDefault();
-                    !_this.options.href && evt.preventDefault();
-                    _this.show(parseInt($this.find('input[type="text"]').val()));
+                    window.location.href=_this.makeHref(page);
+                    _this.show(parseInt(page));
                 });
+
+
             }
-
-
         },
 
         makeHref: function (c) {
@@ -361,6 +378,7 @@
         disabledClass: 'disabled',
         ellipsisClass: 'ellipsis',
         ellipsis: '...',
+        paginationControlClass:'pagination-control',
         paginationControl:true
     };
 
