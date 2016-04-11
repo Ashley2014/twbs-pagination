@@ -111,16 +111,32 @@
             }
 
 
-            if (this.options.ellipsis) {
-                listItems.push(this.buildItem('ellipsis', prev));
+            if (this.options.ellipsis&&pages.numeric[0]>1) {
+
+                if(pages.numeric[0]==2){
+                    listItems.push(this.buildItem('ellipsis', pages.currentPage));
+                }else{
+                    listItems.push(this.buildItem('page', 1));
+                    listItems.push(this.buildItem('ellipsis', pages.currentPage));
+                }
             }
 
 
             for (var i = 0; i < pages.numeric.length; i++) {
 
 
+
                 listItems.push(this.buildItem('page', pages.numeric[i]));
 
+            }
+
+            if (this.options.ellipsis&&pages.numeric[pages.numeric.length-1]<this.options.totalPages) {
+                if(pages.numeric[pages.numeric.length-1]==this.options.totalPages-1){
+                    listItems.push(this.buildItem('ellipsis', pages.currentPage));
+                }else{
+                    listItems.push(this.buildItem('ellipsis', pages.currentPage));
+                    listItems.push(this.buildItem('page', this.options.totalPages));
+                }
             }
 
             if (this.options.next) {
