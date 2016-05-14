@@ -322,13 +322,14 @@
 
                 });
                 $form.on('submit', function (evt) {
+                    evt.preventDefault();
                     var page=parseInt($input.val());
                     if(!page){
                         return
                     }
                     var $this = $(this);
                     $this.off();
-                    evt.preventDefault();
+
                     window.location.href=_this.makeHref(page);
                     _this.show(parseInt(page));
                 });
