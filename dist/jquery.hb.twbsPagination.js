@@ -1,8 +1,8 @@
-/*!
- * jQuery pagination plugin v1.2.6
- * http://esimakin.github.io/twbs-pagination/
+/*
+ * jQuery Bootstrap Pagination v1.3.1
+ * https://github.com/esimakin/twbs-pagination
  *
- * Copyright 2014, Eugene Simakin
+ * Copyright 2014-2015 Eugene Simakin <eugenesimakin@mail.ru>
  * Released under Apache 2.0 license
  * http://apache.org/licenses/LICENSE-2.0.html
  */
@@ -319,9 +319,13 @@
                     if(val>_this.options.totalPages){
                         $this.val(_this.options.totalPages);
                     }
+
                 });
                 $form.on('submit', function (evt) {
                     var page=parseInt($input.val());
+                    if(!page){
+                        return
+                    }
                     var $this = $(this);
                     $this.off();
                     evt.preventDefault();

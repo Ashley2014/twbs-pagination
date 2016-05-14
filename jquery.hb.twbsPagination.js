@@ -319,9 +319,13 @@
                     if(val>_this.options.totalPages){
                         $this.val(_this.options.totalPages);
                     }
+
                 });
                 $form.on('submit', function (evt) {
                     var page=parseInt($input.val());
+                    if(!page){
+                        return
+                    }
                     var $this = $(this);
                     $this.off();
                     evt.preventDefault();
