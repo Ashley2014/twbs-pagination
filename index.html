@@ -33,15 +33,11 @@
     </p>
 
 <pre>
-    $('#pagination-demo').twbsPagination({
+    $('#pagination-1').twbsPagination({
         totalPages: 35,
-        visiblePages: 7,
-        ellipsisClass: 'ellipsis',
-        ellipsis: '...',
-        paginationControl: true
-        onPageClick: function (event, page) {
-            $('#page-content').text('Page ' + page);
-        }
+        visiblePages: 5,
+        href: '#page={{pageNumber}}&c=d',
+        hrefVariable: '{{pageNumber}}'
     });
 </pre>
 
@@ -49,6 +45,19 @@
     <div>
         <div id="pagination-1"></div>
     </div>
+
+<pre>
+    $('#pagination-2').twbsPagination({
+        totalPages: 35,
+        visiblePages: 5,
+        first:  false,
+        prev : '上一页',
+        next :'下一页',
+        last :false,
+        ellipsis :false,
+        paginationControl:false
+    });
+</pre>
 
     <div>
         <ul id="pagination-2"></ul>
@@ -65,7 +74,7 @@
         totalPages: 35,
         visiblePages: 5,
         href: '#page={{pageNumber}}&c=d',
-        hrefVariable: '{{pageNumber}}',
+        hrefVariable: '{{pageNumber}}'
     });
     $('#pagination-2').twbsPagination({
         totalPages: 35,
