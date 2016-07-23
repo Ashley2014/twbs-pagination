@@ -1,7 +1,6 @@
 # [jQuery pagination plugin (bootstrap powered)](http://esimakin.github.io/twbs-pagination/)
 
 ### Basic usage ###
-
 fork from [twbs-pagination](https://github.com/esimakin/twbs-pagination)
 
 add option ellipsis
