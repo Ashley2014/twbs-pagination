@@ -10,7 +10,6 @@ add option paginationControl
 
 original [doc](http://esimakin.github.io/twbs-pagination/)
 
-
 ```javascript
 $('#pagination-demo').twbsPagination({
   totalPages: 35,
